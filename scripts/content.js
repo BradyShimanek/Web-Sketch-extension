@@ -40,7 +40,7 @@ function createToolbar() {
     toolbarDiv.style.zIndex = '9999';
     toolbarDiv.style.display = 'none'; // Hidden by default
     
-    // Add toggle button
+    // Add toolbar buttons
     const toggleButton = document.createElement('button');
     toggleButton.textContent = 'Enable Drawing';
     toggleButton.style.padding = '5px 10px';
@@ -49,6 +49,15 @@ function createToolbar() {
     toggleButton.style.border = 'none';
     toggleButton.style.borderRadius = '3px';
     toggleButton.style.cursor = 'pointer';
+
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'X'; // change to trash can icon later
+    clearButton.style.padding = '5px 10px';
+    clearButton.style.backgroundColor = 'black';
+    clearButton.style.color = 'red';
+    clearButton.style.border = 'none';
+    clearButton.style.borderRadius = '3px';
+    clearButton.style.cursor = 'pointer';
     
     toggleButton.addEventListener('click', function() {
         toggleDrawing();
@@ -56,13 +65,19 @@ function createToolbar() {
         if (drawingEnabled) {
             toggleButton.textContent = 'Disable Drawing';
             toggleButton.style.backgroundColor = '#f44336';
+            //clearButton.style.textContent
         } else {
             toggleButton.textContent = 'Enable Drawing';
             toggleButton.style.backgroundColor = '#4CAF50';
         }
     });
+
+    clearButton.addEventListener('click', function () {
+        clearAll();
+    })
     
     toolbarDiv.appendChild(toggleButton);
+    toolbarDiv.appendChild(clearButton);
     return toolbarDiv;
 }
 
@@ -70,6 +85,13 @@ function createToolbar() {
 function toggleDrawing() {
     drawingEnabled = !drawingEnabled;
     setDrawingMode(drawingEnabled);
+}
+
+// Clear all drawings on the canvas
+function clearAll() {
+    if (ctx && drawingCanvas) {
+        ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+    }
 }
 
 // Enable or disable drawing mode

@@ -51,13 +51,18 @@ function createToolbar() {
     toggleButton.style.cursor = 'pointer';
 
     const clearButton = document.createElement('button');
-    clearButton.textContent = 'X'; // change to trash can icon later
+    clearButton.textContent = 'X'; // change to trash can icon later??
     clearButton.style.padding = '5px 10px';
     clearButton.style.backgroundColor = 'black';
     clearButton.style.color = 'red';
     clearButton.style.border = 'none';
     clearButton.style.borderRadius = '3px';
     clearButton.style.cursor = 'pointer';
+    clearButton.style.marginLeft = '5px';
+
+    clearButton.addEventListener('click', function () {
+        clearAll();
+    })
     
     toggleButton.addEventListener('click', function() {
         toggleDrawing();
@@ -72,9 +77,7 @@ function createToolbar() {
         }
     });
 
-    clearButton.addEventListener('click', function () {
-        clearAll();
-    })
+
     
     toolbarDiv.appendChild(toggleButton);
     toolbarDiv.appendChild(clearButton);

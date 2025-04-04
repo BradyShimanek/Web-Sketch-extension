@@ -1,3 +1,6 @@
+// TODO:   
+// - Add a color picker to the toolbar
+
 // Global variables
 let drawingCanvas = null;
 let toolbar = null;
@@ -50,20 +53,6 @@ function createToolbar() {
     toggleButton.style.borderRadius = '3px';
     toggleButton.style.cursor = 'pointer';
 
-    const clearButton = document.createElement('button');
-    clearButton.textContent = 'X'; // change to trash can icon later??
-    clearButton.style.padding = '5px 10px';
-    clearButton.style.backgroundColor = 'black';
-    clearButton.style.color = 'red';
-    clearButton.style.border = 'none';
-    clearButton.style.borderRadius = '3px';
-    clearButton.style.cursor = 'pointer';
-    clearButton.style.marginLeft = '5px';
-
-    clearButton.addEventListener('click', function () {
-        clearAll();
-    })
-    
     toggleButton.addEventListener('click', function() {
         toggleDrawing();
         
@@ -77,8 +66,31 @@ function createToolbar() {
         }
     });
 
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'X'; // change to trash can icon later??
+    clearButton.style.padding = '5px 10px';
+    clearButton.style.backgroundColor = 'black';
+    clearButton.style.color = 'red';
+    clearButton.style.border = 'none';
+    clearButton.style.borderRadius = '3px';
+    clearButton.style.cursor = 'pointer';
+    clearButton.style.marginLeft = '5px';
 
+    clearButton.addEventListener('click', function () {
+        clearAll();
+    })
+
+    const colorPicker = document.createElement('button');
+    colorPicker.textContent = 'Color'; // change to trash can icon later??
+    colorPicker.style.padding = '5px 10px';
+    colorPicker.style.backgroundColor = 'black';
+    colorPicker.style.color = 'red';
+    colorPicker.style.border = 'none';
+    colorPicker.style.borderRadius = '3px';
+    colorPicker.style.cursor = 'pointer';
+    colorPicker.style.marginRight = '5px';
     
+    toolbarDiv.appendChild(colorPicker);
     toolbarDiv.appendChild(toggleButton);
     toolbarDiv.appendChild(clearButton);
     return toolbarDiv;

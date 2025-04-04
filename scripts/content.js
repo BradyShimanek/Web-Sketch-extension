@@ -80,21 +80,27 @@ function createToolbar() {
         clearAll();
     })
 
-    const colorPicker = document.createElement('button');
-    colorPicker.textContent = 'Color'; // change to trash can icon later??
+    const colorPicker = document.createElement('input');
+    colorPicker.type = 'color';
+    colorPicker.value = '#000000';
     colorPicker.style.padding = '5px 10px';
-    colorPicker.style.backgroundColor = 'black';
-    colorPicker.style.color = 'red';
+    colorPicker.style.width = '20px';
+    colorPicker.style.height = '20px';
     colorPicker.style.border = 'none';
     colorPicker.style.borderRadius = '3px';
     colorPicker.style.cursor = 'pointer';
     colorPicker.style.marginRight = '5px';
+
+    colorPicker.addEventListener('change', function() {
+        ctx.strokeStyle = colorPicker.value;
+    });
     
     toolbarDiv.appendChild(colorPicker);
     toolbarDiv.appendChild(toggleButton);
     toolbarDiv.appendChild(clearButton);
     return toolbarDiv;
 }
+    
 
 // Toggle drawing mode
 function toggleDrawing() {
@@ -181,7 +187,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         // Old support for popup.js if I find out I need it later
         toolbar.style.display = 'block';
         sendResponse({status: 'success'});
-        // Listen for the action of clicking on the extention icon
+        // Listen for the action of clicking on the extension icon, displays toolbar and canvas
     } else if (message.action === 'toggleVisibility') {
         if (message.isActive) {
             toolbar.style.display = 'block';
